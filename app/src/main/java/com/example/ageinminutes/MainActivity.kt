@@ -51,6 +51,10 @@ class MainActivity : AppCompatActivity() {
             val tvSelectedDateInMinutes = findViewById<TextView>(R.id.tvSelectedDateInMinutes)
             tvSelectedDateInMinutes.setText(differenceInMinutes.toString())
 
+            var differnceInHour = differenceInMinutes / (60 )
+            val tvSelectedDateInYear = findViewById<TextView>(R.id.tvSelectedDateInHour)
+            tvSelectedDateInYear.setText(differnceInHour.toString())
+
         }
             ,year
             ,month
