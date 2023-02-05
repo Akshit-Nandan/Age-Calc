@@ -6,18 +6,21 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import com.example.ageinminutes.databinding.ActivityMainBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding : ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val btnDatePicker: View? = findViewById(R.id.btnDatePicker)
-        if (btnDatePicker != null) {
-            btnDatePicker.setOnClickListener {
+//        val btnDatePicker: View? = findViewById(R.id.btnDatePicker)
+        if (binding.btnDatePicker != null) {
+            binding.btnDatePicker.setOnClickListener {
                clickDatePicker(view = View())
                   }
         }
@@ -38,8 +41,7 @@ class MainActivity : AppCompatActivity() {
                 "The Chosen Year Is $selectedyear,The Chosen Month Is $selectedmonth, " +
                         "The Chosen Day Is $selecteddayofMonth"  ,Toast.LENGTH_SHORT).show()
             val selectedDate = "$selecteddayofMonth/${selectedmonth+1}/$selectedyear"
-            val tvselectedDate = findViewById<TextView>(R.id.tvSelectedDate)
-            tvselectedDate.setText(selectedDate)
+            binding.tvSelectedDate.setText(selectedDate)
             val sdf = SimpleDateFormat("dd/MM/yyyy",Locale.ENGLISH)
             val theDate = sdf.parse(selectedDate)
 
@@ -48,8 +50,8 @@ class MainActivity : AppCompatActivity() {
             val currentDate = sdf.parse(sdf.format(System.currentTimeMillis()))
             val currentDateToMinutes = currentDate!!.time /60000
             val differenceInMinutes = currentDateToMinutes - selectedDateInMinutes
-            val tvSelectedDateInMinutes = findViewById<TextView>(R.id.tvSelectedDateInMinutes)
-            tvSelectedDateInMinutes.setText(differenceInMinutes.toString())
+//            val tvSelectedDateInMinutes = findViewById<TextView>(R.id.tvSelectedDateInMinutes)
+            binding.tvSelectedDateInMinutes.setText(differenceInMinutes.toString())
 
             var differnceInHour = differenceInMinutes / (60 )
             val tvSelectedDateInYear = findViewById<TextView>(R.id.tvSelectedDateInHour)
