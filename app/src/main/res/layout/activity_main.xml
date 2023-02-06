@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
      xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,6 +11,7 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/labeltext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -18,8 +19,13 @@
         android:textColor="@color/textColor"
         android:textSize="25sp"
         android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/ageTextView"
          />
     <TextView
+        android:id="@+id/ageTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -29,8 +35,13 @@
         android:background="@color/agetextbackgroundcolor"
         android:textSize="25sp"
         android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labeltext"
+        app:layout_constraintBottom_toTopOf="@id/inmin"
         />
     <TextView
+        android:id="@+id/inmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -38,6 +49,11 @@
         android:textColor="@color/textColor"
         android:textSize="25sp"
         android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ageTextView"
+        app:layout_constraintBottom_toTopOf="@id/btnDatePicker"
+
         />
 
     <Button
@@ -49,6 +65,10 @@
         android:text="Select Date"
         android:textColor="@color/design_default_color_on_primary"
         android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inmin"
+        app:layout_constraintBottom_toTopOf="@id/tvSelectedDate"
         android:textStyle="bold" />
 
     <TextView
@@ -57,12 +77,21 @@
         android:textSize="20sp"
         android:textColor="#844046"
         android:layout_width="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/selectDateText"
+        app:layout_constraintTop_toBottomOf="@id/btnDatePicker"
         android:layout_height="wrap_content"/>
     <TextView
+        android:id="@+id/selectDateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/lightGreyTextColour"
         android:text="Selected Date"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSelectedDate"
+        app:layout_constraintBottom_toTopOf="@id/tvSelectedDateInMinutes"
         android:textSize="18sp"/>
     <TextView
         android:layout_width="wrap_content"
@@ -70,24 +99,44 @@
         android:id="@+id/tvSelectedDateInMinutes"
         android:textSize="35sp"
         android:layout_marginTop="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/selectDateText"
+        app:layout_constraintBottom_toTopOf="@id/textinmin"
         android:textColor="#844046"/>
     <TextView
+        android:id="@+id/textinmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/lightGreyTextColour"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:text="Age in Minutes"
+        app:layout_constraintTop_toBottomOf="@id/tvSelectedDateInMinutes"
+        app:layout_constraintBottom_toTopOf="@id/tvSelectedDateInHour"
         android:textSize="18sp"/>
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/tvSelectedDateInHour"
-        android:textSize="35sp"
-        android:layout_marginTop="20sp"
-        android:textColor="#844046"/>
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/lightGreyTextColour"
+        android:textColor="#844046"
+        android:textSize="35sp"
+        app:layout_constraintTop_toBottomOf="@id/textinmin"
+        app:layout_constraintBottom_toTopOf="@id/textView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Age in Hour"
-        android:textSize="18sp"/>
-</LinearLayout>
+        android:textColor="@color/lightGreyTextColour"
+        android:textSize="18sp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintTop_toBottomOf="@id/tvSelectedDateInHour"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
