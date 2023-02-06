@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:background="@color/backgroundcolor"
+    android:background="#0B27DC"
     tools:context=".MainActivity">
 
     <TextView
@@ -31,8 +31,7 @@
         android:layout_marginTop="15dp"
         android:padding="10dp"
         android:text="AGE"
-        android:textColor="#FFFFFF"
-        android:background="@color/agetextbackgroundcolor"
+        android:textColor="#25B50C"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -61,10 +60,11 @@
         android:layout_width="256dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:background="#FFFFFF"
+        android:background="@drawable/select_btn"
         android:text="Select Date"
         android:textColor="@color/design_default_color_on_primary"
         android:textSize="20sp"
+
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inmin"
@@ -101,9 +101,12 @@
         android:layout_marginTop="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        tools:text="test"
         app:layout_constraintTop_toBottomOf="@id/selectDateText"
         app:layout_constraintBottom_toTopOf="@id/textinmin"
-        android:textColor="#844046"/>
+        android:textColor="#0AF35F"
+        android:textStyle="italic"
+        />
     <TextView
         android:id="@+id/textinmin"
         android:layout_width="wrap_content"
@@ -120,7 +123,8 @@
         android:id="@+id/tvSelectedDateInHour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#844046"
+        android:textColor="#0AF35F"
+        android:textStyle="italic"
         android:textSize="35sp"
         app:layout_constraintTop_toBottomOf="@id/textinmin"
         app:layout_constraintBottom_toTopOf="@id/textView"
