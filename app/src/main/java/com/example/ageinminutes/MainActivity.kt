@@ -6,18 +6,20 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import com.example.ageinminutes.databinding.ActivityMainBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
+    private val dataViewModel: DataViewModel by viewModels()
     private lateinit var binding : ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        updateData()
 //        val btnDatePicker: View? = findViewById(R.id.btnDatePicker)
         if (binding.btnDatePicker != null) {
             binding.btnDatePicker.setOnClickListener {
@@ -26,9 +28,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun updateData() {
+        if(dataViewModel.notClicked) return
+        binding.tvSelectedDate.setText(dataViewModel.date)
+        binding.tvSelectedDateInMinutes.setText(dataViewModel.ageMin.toString())
+        binding.tvSelectedDateInHour.setText(dataViewModel.ageHours.toString())
+
+    }
+
     private fun View() {return}
 
     private fun clickDatePicker(view: Unit) {
+        dataViewModel.notClicked = false
         val myCalender = Calendar.getInstance()
         val year = myCalender.get(Calendar.YEAR)
         val month = myCalender.get(Calendar.MONTH)
@@ -41,7 +52,8 @@ class MainActivity : AppCompatActivity() {
                 "The Chosen Year Is $selectedyear,The Chosen Month Is $selectedmonth, " +
                         "The Chosen Day Is $selecteddayofMonth"  ,Toast.LENGTH_SHORT).show()
             val selectedDate = "$selecteddayofMonth/${selectedmonth+1}/$selectedyear"
-            binding.tvSelectedDate.setText(selectedDate)
+            dataViewModel.date = selectedDate
+
             val sdf = SimpleDateFormat("dd/MM/yyyy",Locale.ENGLISH)
             val theDate = sdf.parse(selectedDate)
 
@@ -51,11 +63,12 @@ class MainActivity : AppCompatActivity() {
             val currentDateToMinutes = currentDate!!.time /60000
             val differenceInMinutes = currentDateToMinutes - selectedDateInMinutes
 //            val tvSelectedDateInMinutes = findViewById<TextView>(R.id.tvSelectedDateInMinutes)
-            binding.tvSelectedDateInMinutes.setText(differenceInMinutes.toString())
+            dataViewModel.ageMin = differenceInMinutes
+
 
             var differnceInHour = differenceInMinutes / (60 )
-            val tvSelectedDateInYear = findViewById<TextView>(R.id.tvSelectedDateInHour)
-            tvSelectedDateInYear.setText(differnceInHour.toString())
+            dataViewModel.ageHours = differnceInHour
+            updateData()
 
         }
             ,year
